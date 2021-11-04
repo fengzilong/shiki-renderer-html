@@ -74,7 +74,8 @@ export function render(
     return ''
   }
 
-  return h( 'pre', { className: 'shiki', style: `background-color: ${ bg }` }, [
+  // eslint-disable-next-line max-len
+  return h( 'pre', { className: 'shiki', style: `background-color: ${ bg };` }, [
     options.langId ? `<div class="language-id">${ options.langId }</div>` : '',
     h(
       'code',
@@ -105,7 +106,7 @@ export function render(
             return h(
               'token',
               {
-                style: cssDeclarations.join( '; ' ),
+                style: cssDeclarations.join( ';' ) + ';',
                 tokens: line,
                 token,
                 index
