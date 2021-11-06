@@ -29,6 +29,7 @@ export interface TokenElementProps {
   tokens: IThemedToken[]
   token: IThemedToken
   index: number,
+  lineIndex: number,
   children: string,
 }
 
@@ -82,7 +83,16 @@ export function render(
 
   function h(
     type: ElementType,
-    props: { className?: string; style?: string; lines?: IThemedToken[][]; line?: IThemedToken[]; index?: number; tokens?: IThemedToken[]; token?: IThemedToken },
+    props: {
+      className?: string;
+      style?: string;
+      lines?: IThemedToken[][];
+      line?: IThemedToken[];
+      index?: number;
+      lineIndex?: number;
+      tokens?: IThemedToken[];
+      token?: IThemedToken
+    },
     children: string[]
   ): string {
     const element = ( userElements && userElements[ type ] ) ||
@@ -119,6 +129,7 @@ export function render(
         tokens: props.tokens || [],
         token: props.token as IThemedToken,
         index: props.index as number,
+        lineIndex: props.lineIndex as number,
         children: children.join( '' )
       } )
     }
@@ -132,14 +143,14 @@ export function render(
     h(
       'code',
       {},
-      lines.map( ( line, index ) => {
+      lines.map( ( line, lineIndex ) => {
         return h(
           'line',
           {
             className: 'line',
             lines,
             line,
-            index
+            index: lineIndex,
           },
           line.map( ( token: IThemedToken, index ) => {
             const cssDeclarations = [ `color: ${ token.color || options.fg }` ]
@@ -161,7 +172,8 @@ export function render(
                 style: cssDeclarations.join( ';' ) + ';',
                 tokens: line,
                 token,
-                index
+                index,
+                lineIndex,
               },
               [ escapeHtml( token.content ) ]
             )
