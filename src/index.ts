@@ -38,10 +38,10 @@ export type LineElementFunction = ( props: LineElementProps ) => string
 export type TokenElementFunction = ( props: TokenElementProps ) => string
 
 export type ElementsOptions = {
-  pre: PreElementFunction,
-  code: CodeElementFunction,
-  line: LineElementFunction,
-  token: TokenElementFunction,
+  pre?: PreElementFunction,
+  code?: CodeElementFunction,
+  line?: LineElementFunction,
+  token?: TokenElementFunction,
 }
 
 export interface HtmlRendererOptions {
