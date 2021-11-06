@@ -1,6 +1,6 @@
 {
   "name": "shiki-renderer-html",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "shiki renderer for html",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
